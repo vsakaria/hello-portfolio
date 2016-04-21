@@ -1,6 +1,6 @@
 {
-  "name": "react-webpack-boilerplate",
-  "description": "Simple production-ready boilerplate for React and Webpack (SASS and React hot reloading)",
+  "name": "hello-portfolio",
+  "description": "my personal space",
   "keywords": [
     "react",
     "webpack",
@@ -10,8 +10,8 @@
     "hot",
     "reload"
   ],
-  "website": "http://srn.io",
-  "repository": "https://github.com/srn/react-webpack-boilerplate",
+  "website": "http://vasco.work",
+  "repository": "https://github.com/vascogaspar/hello-portfolio.git",
   "logo": "http://i.imgur.com/ydf7myp.png",
   "env": {
     "NODE_ENV": {

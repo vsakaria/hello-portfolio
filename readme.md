@@ -13,7 +13,7 @@ $ npm install
 
 Alternatively, you can deploy your own copy with one click using this button:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/srn/react-webpack-boilerplate)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vascogaspar/hello-portfolio.git)
 
 ## Requirements
 
