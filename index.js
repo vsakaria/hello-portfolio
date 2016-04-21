@@ -4,6 +4,7 @@ var fs = require('fs');
 var path = require('path');
 
 var express = require('express');
+var favicon = require('serve-favicon');
 var app = express();
 
 var compress = require('compression');
@@ -17,6 +18,7 @@ app.set('views', path.join(process.cwd(), '/server/views'));
 app.use(compress());
 app.use(layouts);
 app.use('/client', express.static(path.join(process.cwd(), '/client')));
+app.use(favicon(__dirname + '/favicon.ico'));
 
 app.disable('x-powered-by');
 
