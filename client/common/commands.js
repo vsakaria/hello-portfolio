@@ -1,6 +1,7 @@
 import React from 'react';
 import Links from '../components/Types/Links';
 import List from '../components/Types/List';
+import Link from '../components/Types/Link';
 import Table from '../components/Types/Table';
 import Pepe from '../components/Ascii/Pepe';
 import Benfica from '../components/Ascii/Benfica';
@@ -12,16 +13,23 @@ const alt_cmds = ['pepe', 'slb'];
 const tableHeader = ['Project', 'Description', 'Date', 'Resources'];
 
 const tableBody = [{
-  title: 'Jeremy Venier',
-  description: 'Website implementation for zen gardens',
-  date: '2016',
-  link: 'http://jeremyvenier.fr'
-},{
-  title: 'HOKO',
-  description: 'Mobile deep linking platform. Was in charge of developing and designing interfaces for all communication channels',
-  date: '2015 - 2016',
-  link: 'http://hokolinks.com'
-}
+    title: 'Jeremy Venier',
+    description: 'Squaresplace implementation for this zen garden guy. Cool stuff.',
+    date: '2016',
+    link: 'http://jeremyvenier.fr'
+  },
+  {
+    title: 'HOKO',
+    description: 'Developed and designed this SaaS venture, mobile deep linking stuff. Go check it -->',
+    date: '2015 - 2016',
+    link: 'http://hokolinks.com'
+  },
+  {
+    title: 'Glintt',
+    description: 'Worked as a consultant for numerous clients in different areas, such as Bank, Insurance, Telecom, Transportations (among others)',
+    date: '2012 - 2015',
+    link: 'http://www.glintt.com'
+  }
 ];
 
 var Commands = function(value, callback, clear, showPepe) {
@@ -32,6 +40,10 @@ var Commands = function(value, callback, clear, showPepe) {
     case '"commands"':
     case 'yes':
       callback(value, <List list={cmds} title="Here is the list of available commands you can try" />);
+      break;
+
+    case 'no':
+      callback(value, 'k');
       break;
 
     case 'hello':
@@ -51,12 +63,20 @@ var Commands = function(value, callback, clear, showPepe) {
       clear();
       break;
 
+    case 'pwq':
+    case 'pWq':
+      callback(value, 'thats a nose');
+      break;
+
     case 'slb':
       callback(value, <Benfica/>)
       break;
 
+    case 'source':
+      callback(value, <Link link="http://github.com/vascogaspar/hello-portfolio" before="You can find the source code of this website at"/>)
+      break;
+
     case 'pepe':
-      // showPepe();
       callback(value, <Pepe/>);
       break;
 
@@ -77,12 +97,16 @@ var Commands = function(value, callback, clear, showPepe) {
       callback(value, <Table header={tableHeader} body={tableBody} />);
       break;
 
+    case 'bio':
+      callback(value, 'soon...')
+      break;
+
     case '':
       callback('', '')
       break;
 
     default:
-      callback(value, '-sketelor: '+ value +': command was not found. Try writing "help" or "commands"')
+      callback(value, '-oops "'+ value +'": command was not found. Try writing "help" or "commands"')
   }
 };
 
