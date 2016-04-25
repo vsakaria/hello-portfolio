@@ -1,6 +1,6 @@
 
 
-$background: black;
+$background: #111;
 $color: lime;
 
 @import 'components/table';
@@ -74,7 +74,7 @@ input {
 }
 
 .type__list__title {
-  color: pink;
+  color: lightblue;
   margin: 0;
 }
 
@@ -87,7 +87,7 @@ input {
 }
 
 .yellow {
-  color: black;
+  color: $background;
   background: green;
 }
 
