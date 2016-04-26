@@ -29,8 +29,8 @@ class SkullASCII extends Component {
  \\ .´--.(##)(#).
   ´-->;--' pWq´>
    < <"v\\,,,,]
-    ´\\´^-''''7   welcome stranger.
-      ´~"--^-'   write somthn below
+    ´\\´^-''''7   welcome to my little space, stranger.
+      ´~"--^-'   try writing something below
       `;
 
     let mouthOpen = `
@@ -41,11 +41,11 @@ class SkullASCII extends Component {
  \\ .´--.(##)(#).
   ´-->;--' pWq´>
    < <"v\\,,,,]
-                 welcome stranger.
-    ´\\´^-''''7   write somthn below
+                 welcome to my little space, stranger.
+    ´\\´^-''''7   try writing something below
       ´~"--^-'   `;
 
-      
+
     return (
       <pre>
         <code>

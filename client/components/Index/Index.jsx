@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Loading from '../Loading/Loading';
-import Skull from '../Ascii/Skull';
-import Terminal from '../Terminal/Terminal';
+import Loading from '../Loading/Loading.jsx';
+import Skull from '../Ascii/Skull.jsx';
+import Terminal from '../Terminal/Terminal.jsx';
 
 
 
@@ -16,6 +16,7 @@ export default React.createClass({
 
   componentDidMount() {
     var self = this;
+    // lol
     setTimeout(function() {
       self.setState({
         loading: false
@@ -33,16 +34,15 @@ export default React.createClass({
 
   render() {
     return (
-      <section onClick={this._setFocus}>
-        <Loading loading={this.state.loading}/>
+      <main onClick={this._setFocus}>
+        <Loading loading={this.state.loading} />
         {this.state.loading ? '' :
-        <div>
-          <Skull/>
-          <Terminal shouldScroll={this.shouldScroll}/>
-        </div>
+          <div>
+            <Skull/>
+            <Terminal shouldScroll={this.shouldScroll}/>
+          </div>
         }
-
-      </section>
+      </main>
     );
   }
 });

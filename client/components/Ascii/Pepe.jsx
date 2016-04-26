@@ -6,7 +6,7 @@ class Pepe extends Component {
     return (
       <pre>
         <code className="yellow">{`
-     Feels bad man           
+Feels bad man           
 ___________████████__██████
 _________█░░░░░░░░██_██░░░░░░█
 ________█░░░░░░░░░░░█░░░░░░░░░█
