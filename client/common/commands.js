@@ -1,11 +1,11 @@
 import React from 'react';
-import Links from '../components/Types/Links.jsx';
-import List from '../components/Types/List.jsx';
-import Link from '../components/Types/Link.jsx';
-import Table from '../components/Types/Table.jsx';
-import Pepe from '../components/Ascii/Pepe.jsx';
-import Benfica from '../components/Ascii/Benfica.jsx';
-import CONST from './constants.js';
+import Links from '../components/Types/Links';
+import List from '../components/Types/List';
+import Link from '../components/Types/Link';
+import Table from '../components/Types/Table';
+import Pepe from '../components/Ascii/Pepe';
+import Benfica from '../components/Ascii/Benfica';
+import CONST from './constants';
 
 const cmds = ['clear', 'social', 'bio', 'work', 'copyright', 'source', 'contact'];
 const alt_cmds = ['pepe', 'slb'];
@@ -69,11 +69,11 @@ var Commands = function(value, callback, clear, showPepe) {
       break;
 
     case 'slb':
-      callback(value, <Benfica />);
+      callback(value, <Benfica/>)
       break;
 
     case 'source':
-      callback(value, <Link link="http://github.com/vascogaspar/hello-portfolio" before="You can find the source code of this website at"/>);
+      callback(value, <Link link="http://github.com/vascogaspar/hello-portfolio" before="You can find the source code of this website at"/>)
       break;
 
     case 'pepe':
@@ -98,15 +98,15 @@ var Commands = function(value, callback, clear, showPepe) {
       break;
 
     case 'bio':
-      callback(value, 'soon...');
+      callback(value, 'soon...')
       break;
 
     case '':
-      callback('', '');
+      callback('', '')
       break;
 
     default:
-      callback(value, '-oops "'+ value +'": command was not found. Try writing "help" or "commands"');
+      callback(value, '-oops "'+ value +'": command was not found. Try writing "help" or "commands"')
   }
 };
 
