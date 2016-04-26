@@ -8,6 +8,7 @@ export default React.createClass({
     entries: React.PropTypes.array
   },
 
+
   render() {
     return (
       <div>

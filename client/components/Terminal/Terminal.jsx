@@ -1,10 +1,10 @@
 'use strict';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Prompt from './Prompt.jsx';
-import Output from './Output.jsx';
-import Commands from '../../common/commands.js';
-import CONST from '../../common/constants.js';
+import Prompt from './Prompt';
+import Output from './Output';
+import Commands from '../../common/commands';
+import CONST from '../../common/constants';
 import ga from 'react-ga';
 
 export default React.createClass({

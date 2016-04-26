@@ -5,20 +5,23 @@ export default React.createClass({
   propTypes: {
     loading: React.PropTypes.bool
   },
-
   getInitialState() {
     return {
       loadValue: '.'
     }
   },
-
   increment() {
     if (this.state.loadValue === '....') {
       this.setState({loadValue: ''});
     }
 		this.setState({ loadValue: this.state.loadValue + '.' });
 	},
-
+	componentDidMount() {
+		this.interval = setInterval(this.increment, 300);
+	},
+  componentWillUnmount() {
+		clearInterval(this.interval);
+	},
   render() {
     return (
       <div>
@@ -26,4 +29,5 @@ export default React.createClass({
       </div>
     );
   }
+
 });
