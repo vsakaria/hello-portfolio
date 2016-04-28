@@ -36,18 +36,24 @@ var Commands = function(value, callback, clear, showPepe) {
   switch (value) {
     case 'help':
     case '"help"':
+    case 'Help':
     case 'commands':
+    case 'Commands':
     case '"commands"':
     case 'yes':
+    case 'Yes':
       callback(value, <List list={cmds} title="Here is the list of available commands you can try" />);
       break;
 
     case 'no':
+    case 'No':
       callback(value, 'k');
       break;
 
     case 'hello':
+    case 'Hello':
     case 'hello world':
+    case 'Hello world':
       callback(value, 'Hello fellow human. Do you need any help?');
       break;
 
@@ -60,6 +66,7 @@ var Commands = function(value, callback, clear, showPepe) {
       break;
 
     case 'clear':
+    case 'Clear':
       clear();
       break;
 
@@ -69,35 +76,43 @@ var Commands = function(value, callback, clear, showPepe) {
       break;
 
     case 'slb':
+    case 'Slb':
       callback(value, <Benfica/>)
       break;
 
     case 'source':
+    case 'Source':
       callback(value, <Link link="http://github.com/vascogaspar/hello-portfolio" before="You can find the source code of this website at"/>)
       break;
 
     case 'pepe':
+    case 'Pepe':
       callback(value, <Pepe/>);
       break;
 
     case 'social':
+    case 'Social':
       callback(value, <Links links={['https://pt.linkedin.com/in/vascoagaspar', 'https://github.com/vascogaspar']}/>);
       break;
 
     case 'contact':
+    case 'Contact':
       callback(value, 'opening email client...');
       window.location.href = `mailto:${CONST.EMAIL}`;
       break;
 
     case 'copyright':
+    case 'Copyright':
       callback(value, '© ' + new Date() + ' kthxbye');
       break;
 
     case 'work':
+    case 'Work':
       callback(value, <Table header={tableHeader} body={tableBody} />);
       break;
 
     case 'bio':
+    case 'Bio':
       callback(value, 'soon...')
       break;
 

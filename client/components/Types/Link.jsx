@@ -16,7 +16,7 @@ export default React.createClass({
     console.log(this.props.link);
     return (
       <div>
-        {this.props.before} <a href={this.props.link}>{this.props.link}</a>
+        {this.props.before} <a href={this.props.link} target="blank">{this.props.link}</a>
       </div>
     );
   }

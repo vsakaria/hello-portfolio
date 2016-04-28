@@ -1,31 +1,6 @@
 <html>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#">
-  <title>hello.</title>
-  <meta name="description" content="this is my personal space." />
-
-	<!-- Schema.org markup for Google+ -->
-	<meta itemprop="name" content="hello.">
-	<meta itemprop="description" content="this is my personal space.">
-	<meta itemprop="image" content="https://vasco.work/client/images/cid.png">
-
-	<!-- Twitter Card data -->
-	<meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@vascogaspar_">
-  <meta name="twitter:creator" content="@vascogaspar_">
-  <meta name="twitter:title" content="hello.">
-  <meta name="twitter:description" content="I do UI and Front-End">
-  <meta name="twitter:image" content="https://vasco.work/client/images/cid.png">
-
-	<!-- Open Graph data -->
-	<meta property="og:title" content="hello." />
-	<meta property="og:type" content="profile" />
-	<meta property="og:url" content="https://vasco.work" />
-  <meta property="og:image" content="https://vasco.work/client/images/cid.png" />
-	<meta property="og:image:secure_url" content="https://vasco.work/client/images/cid.png" />
-	<meta property="og:description" content="this is my personal space." />
-	<meta property="og:site_name" content="hello." />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%- include metatags.ejs %>
 
   <script>
     document.addEventListener("click", function(event) {
