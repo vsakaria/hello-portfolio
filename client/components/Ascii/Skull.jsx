@@ -45,10 +45,10 @@ class SkullASCII extends Component {
     ´\\´^-''''7   write somthn below
       ´~"--^-'   `;
 
-      
+
     return (
-      <pre>
-        <code>
+      <pre className="distort">
+        <code className="glitch" data-text={mouthClosed}>
           {this.state.mouthOpen ? mouthClosed : mouthOpen}
         </code>
       </pre>

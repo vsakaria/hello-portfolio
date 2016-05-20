@@ -3,6 +3,7 @@ $background: #111;
 $color: lime;
 
 @import 'components/table';
+@import 'components/table';
 
 ::selection {
   background: $color;
@@ -19,6 +20,7 @@ body {
   font-family: $font-primary;
   font-size: 13px;
   letter-spacing: 0.02em;
+  animation: distort .2s linear infinite;
 }
 
 pre,
@@ -111,3 +113,96 @@ input {
     visibility: hidden;
   }
 }
+
+.distort {
+  animation: distort 5s linear infinite;
+}
+
+.glitch {
+  position: relative;
+  margin: 0 auto;
+  background: $background;
+}
+
+.glitch::before,
+.glitch::after {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  clip: rect(0, 900px, 0, 0);
+  content: attr(data-text);
+}
+
+.glitch::after {
+  animation-name: glitch-animation;
+  animation-duration: 4s;
+  left: 4px;
+  text-shadow: -1px 0 red;
+  background: $background;
+}
+
+.glitch::before {
+  animation-name: glitch-animation-2;
+  animation-duration: 6s;
+  left: -4px;
+  text-shadow: 1px 0 blue;
+  background: $background;
+}
+
+@mixin rect($top, $bottom) {
+  clip: rect($top, 9999px, $bottom, 0);
+}
+
+/* Expanded Animations */
+@keyframes glitch-animation {
+  0% { @include rect(42px, 44px); }
+  5% { @include rect(12px, 59px); }
+  10% { @include rect(48px, 29px); }
+  15.0% { @include rect(42px, 73px); }
+  20% { @include rect(63px, 27px); }
+  25% { @include rect(34px, 55px); }
+  30.0% { @include rect(86px, 73px); }
+  35% { @include rect(20px, 20px); }
+  40% { @include rect(26px, 60px); }
+  45% { @include rect(25px, 66px); }
+  50% { @include rect(57px, 98px); }
+  55.0% { @include rect(5px, 46px); }
+  60.0% { @include rect(82px, 31px); }
+  65% { @include rect(54px, 27px); }
+  70% { @include rect(28px, 99px); }
+  75% { @include rect(45px, 69px); }
+  80% { @include rect(23px, 85px); }
+  85.0% { @include rect(54px, 84px); }
+  90% { @include rect(45px, 47px); }
+  95% { @include rect(37px, 20px); }
+  100% { @include rect(4px, 91px); }
+}
+
+@keyframes glitch-animation-2 {
+  0% { @include rect(65px, 100px); }
+  5% { @include rect(52px, 74px); }
+  10% { @include rect(79px, 85px); }
+  15.0% { @include rect(75px, 5px); }
+  20% { @include rect(67px, 61px); }
+  25% { @include rect(14px, 79px); }
+  30.0% { @include rect(1px, 66px); }
+  35% { @include rect(86px, 30px); }
+  40% { @include rect(23px, 98px); }
+  45% { @include rect(85px, 72px); }
+  50% { @include rect(71px, 75px); }
+  55.0% { @include rect(2px, 48px); }
+  60.0% { @include rect(30px, 16px); }
+  65% { @include rect(59px, 50px); }
+  70% { @include rect(41px, 62px); }
+  75% { @include rect(2px, 82px); }
+  80% { @include rect(47px, 73px); }
+  85.0% { @include rect(3px, 27px); }
+  90% { @include rect(26px, 55px); }
+  95% { @include rect(42px, 97px); }
+  100% { @include rect(38px, 49px); }
+}
+
+@keyframes distort {0%,3%,4.3%,5%,42%,44%,88%,90%,92%,to{opacity:1}90%{-webkit-transform:translate(-0px);transform:translate(-0px)}43%{opacity:0}}
