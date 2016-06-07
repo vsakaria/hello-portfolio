@@ -39,6 +39,7 @@ export default React.createClass({
         <Loading loading={this.state.loading}/>
         {this.state.loading ? '' :
         <div>
+          {Wat}
           <Skull/>
           <Terminal shouldScroll={this.shouldScroll}/>
         </div>
