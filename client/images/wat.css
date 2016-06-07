@@ -1,0 +1,12 @@
+.wufoo-form-container{
+ text-align: center;
+}
+
+
+.wufoo li.focused {
+   background-color: transparent;
+}
+
+.wufoo .info h2{
+ visibility: hidden;
+}
