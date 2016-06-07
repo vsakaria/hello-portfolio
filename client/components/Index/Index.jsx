@@ -17,6 +17,7 @@ export default React.createClass({
 
   componentDidMount() {
     var self = this;
+    console.log(Wat);
     setTimeout(function() {
       self.setState({
         loading: false
@@ -38,7 +39,6 @@ export default React.createClass({
         <Loading loading={this.state.loading}/>
         {this.state.loading ? '' :
         <div>
-        {Wat}
           <Skull/>
           <Terminal shouldScroll={this.shouldScroll}/>
         </div>

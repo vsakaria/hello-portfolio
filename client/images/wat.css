@@ -1,12 +1,112 @@
-.wufoo-form-container{
- text-align: center;
-}
-
-
-.wufoo li.focused {
-   background-color: transparent;
-}
-
-.wufoo .info h2{
+h2{
  visibility: hidden;
+}
+
+
+.wufoo .info h2 {
+   visibility: hidden;
+}
+
+
+form.wufoo {
+   text-align: center;
+   font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.wufoo label.desc, .wufoo legend.desc {
+   font-size: 20px;
+   font-family: inherit;
+   font-style: normal;
+   font-weight: 300;
+   color: #444444 ;
+}
+
+form li span {
+   margin: 0 .3em 0 0;
+   padding: 0;
+   float: none;
+   color: #444;
+   display: inline-block;
+}
+
+form li div label, form li span label {
+   margin: 0;
+   padding-top: 3px;
+   clear: both;
+   font-size: 16px;
+   line-height: 160%;
+   color: #444;
+   display: block;
+}
+
+input.text, input.search, textarea.textarea {
+   border: 1px solid black;
+}
+
+.wufoo input.text, .wufoo textarea.textarea, .wufoo input.file, .wufoo select.select {
+   font-style: normal;
+   font-weight: normal;
+   color: #333333 ;
+   font-size: 100%;
+   margin: auto;
+   text-align: center;
+   height: 33px;
+}
+
+h2{
+ visibility: hidden;
+}
+
+
+.wufoo .info h2 {
+   visibility: hidden;
+}
+
+
+form.wufoo {
+   text-align: center;
+   font-family: 'Work Sans', sans-serif;
+font-size: 16px;
+font-weight: 300;
+}
+
+.wufoo label.desc, .wufoo legend.desc {
+   font-size: 20px;
+   font-family: inherit;
+   font-family: 'Work Sans', sans-serif;
+font-size: 16px;
+font-weight: 300;
+}
+
+form li span {
+   margin: 0 .3em 0 0;
+   padding: 0;
+   float: none;
+   color: #444;
+   display: inline-block;
+}
+
+form li div label, form li span label {
+   margin: 0;
+   padding-top: 3px;
+   clear: both;
+   font-size: 16px;
+   line-height: 160%;
+   color: #444;
+   display: block;
+}
+
+input.text, input.search, textarea.textarea {
+   border: 1px solid black;
+}
+
+.wufoo input.text, .wufoo textarea.textarea, .wufoo input.file, .wufoo select.select {
+   font-style: normal;
+   font-weight: normal;
+   color: #333333 ;
+   font-size: 100%;
+   margin: auto;
+   text-align: center;
+   height: 33px;
 }
