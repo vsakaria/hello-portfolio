@@ -16,7 +16,6 @@ export default React.createClass({
 
   componentDidMount() {
     var self = this;
-    console.log(Wat);
     setTimeout(function() {
       self.setState({
         loading: false
