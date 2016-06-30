@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Loading from '../Loading/Loading';
 import Skull from '../Ascii/Skull';
 import Terminal from '../Terminal/Terminal';
-var Wat = require('../../images/wat.css');
 
 
 
@@ -39,7 +38,6 @@ export default React.createClass({
         <Loading loading={this.state.loading}/>
         {this.state.loading ? '' :
         <div>
-          {Wat}
           <Skull/>
           <Terminal shouldScroll={this.shouldScroll}/>
         </div>
