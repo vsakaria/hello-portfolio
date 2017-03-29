@@ -1,24 +1,17 @@
 <html>
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#">
-  <%- include metatags.ejs %>
-
-  <script>
-    document.addEventListener("click", function(event) {
-      document.getElementById("prompt").focus();
-    }, false);
-  </script>
-</head>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# profile: http://ogp.me/ns/profile#">
+    <%- include metatags.ejs %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.6.0/Tween.min.js" charset="utf-8"></script>
+  </head>
   <body>
+    <div id="start-here"></div>
+    <%- body %>
 
-  <div id="start-here"></div>
-
-  <%- body %>
-
-  <% if (env.production) { %>
-    <script async src="<%= env.assets.main.js %>"></script>
-  <% } else { %>
-    <script src="http://localhost:3000/client/main.js"></script>
-  <% } %>
-
+    <% if (env.production) { %>
+      <script async src="<%= env.assets.main.js %>"></script>
+    <% } else { %>
+      <script src="http://localhost:3000/client/main.js"></script>
+    <% } %>
   </body>
 </html>

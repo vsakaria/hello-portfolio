@@ -3,46 +3,27 @@ import ReactDOM from 'react-dom';
 import Loading from '../Loading/Loading';
 import Skull from '../Ascii/Skull';
 import Terminal from '../Terminal/Terminal';
+import {IndexRoute, Route, Router, browserHistory} from 'react-router';
 
-
+import Home from '../../pages/Home';
+import Animation from '../../pages/Animation';
+import Intro from '../../pages/Intro';
+import App from '../../pages/App';
 
 export default React.createClass({
 
-  getInitialState() {
-    return {
-      loading: true
-    }
-  },
-
-  componentDidMount() {
-    var self = this;
-    setTimeout(function() {
-      self.setState({
-        loading: false
-      })
-    }, 2000)
-  },
-
-  shouldScroll() {
-    window.scrollTo(0,document.body.scrollHeight);
-  },
-
-  _setFocus() {
-    document.getElementById("prompt").focus();
-  },
-
   render() {
     return (
-      <section onClick={this._setFocus}>
-        <Loading loading={this.state.loading}/>
-        {this.state.loading ? '' :
-        <div>
-          <Skull/>
-          <Terminal shouldScroll={this.shouldScroll}/>
-        </div>
-        }
-
-      </section>
+      <Router history={browserHistory}>
+        <Route path="/" component={App} >
+          { /* Home (main) route */ }
+          <IndexRoute component={Intro}/>
+          <Route path="welcome" component={Home} />
+          <Route path="animation" component={Animation} />
+          { /* Catch all route  - 404 */ }
+          <Route path="*" component={Home} status={404} />
+        </Route>
+      </Router>
     );
   }
 });

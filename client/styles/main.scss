@@ -21,6 +21,8 @@ body {
   font-size: 13px;
   letter-spacing: 0.02em;
   animation: distort .2s linear infinite;
+  overflow-x: hidden;
+  margin: 0;
 }
 
 pre,
@@ -95,6 +97,53 @@ input {
 
 .green {
   color: red;
+}
+
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+#start-here {
+  z-index: -1;
+  padding: 0 15px 15px;
+}
+
+#info {
+  color:#000;
+  position: absolute;
+  top: 0px; width: 100%;
+  padding: 5px;
+}
+
+#warning {
+  position: fixed;
+  bottom: 40px;
+  box-sizing: border-box;
+  width: 100%;
+  left: 50%;
+  margin-left: -250px;
+  text-align: center;
+  padding: 0 30px;
+  font-size: 20px;
+  color: #00ff00;
+  z-index: 3;
+  max-width: 500px;
+}
+
+.blink {
+  opacity: 0;
+}
+
+p {
+  display: inline;
+  margin: 0;
+}
+
+.error {
+  background-color: mediumblue;
 }
 
 // Animations

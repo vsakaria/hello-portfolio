@@ -1,11 +1,24 @@
 'use strict';
 import React from 'react';
+import GSAP from 'react-gsap-enhancer';
+import {TimelineMax} from 'gsap';
 
-export default React.createClass({
+function animateList(utils) {
+  var items = utils.target.find({className: 'indent'}).findAllInChildren()
+
+  return new TimelineMax()
+  	.staggerFrom(items, 0.05, {x: -10, opacity: 0}, .12)
+}
+
+export default GSAP()(React.createClass({
 
   propTypes: {
     list: React.PropTypes.array.isRequired,
     title: React.PropTypes.string.isRequired
+  },
+
+  componentDidMount(){
+      this.addAnimation(animateList)
   },
 
   render() {
@@ -22,4 +35,4 @@ export default React.createClass({
       </div>
     );
   }
-});
+}));

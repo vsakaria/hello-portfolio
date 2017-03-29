@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>lol</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
+		<style>
+			body {
+				color: #fff;
+				font-family: consolas;
+				font-size:13px;
+				text-align:center;
+				font-weight: bold;
+				background-color: #000;
+				margin: 0px;
+				overflow: hidden;
+			}
+      #container {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+			#info {
+				color:#000;
+				position: absolute;
+				top: 0px; width: 100%;
+				padding: 5px;
+			}
+			a {
+				color: red;
+			}
+      #warning {
+        position: fixed;
+        bottom: 40px;
+        box-sizing: border-box;
+        width: 100%;
+        left: 0;
+        text-align: center;
+        padding: 0 30px;
+        font-size: 30px;
+        color: #00ff00;
+      }
+      .blink {
+        opacity: 0;
+      }
+      p {
+        display: inline;
+        margin: 0;
+      }
+
+		</style>
+	</head>
+
+	<body>
+		<div id="container"></div>
+    <div id="warning">
+      <p class="alert">
+        You are now entering a dangerous zone.<br/>Do you wish to continue
+      </p>
+      <span class="blink">?</span>
+    </div>
+
+    <script src="js/SplitText.min.js"></script>
+		<script src="js/three.min.js"></script>
+    <script src="js/tween.min.js"></script>
+    <script src="js/OBJLoader.js"></script>
+
+    <script src="js/EffectComposer.js"></script>
+    <script src="js/RenderPass.js"></script>
+    <script src="js/ShaderPass.js"></script>
+    <script src="js/GlitchPass.js"></script>
+    <script src="js/CopyShader.js"></script>
+    <script src="js/DigitalGlitch.js"></script>
+
+
+		<script>
+			var container;
+      var uzis = [];
+			var camera, controls, scene, renderer, composer;
+      var mouseX = 0, mouseY = 0;
+      var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+      var texture;
+      var skull;
+      var skullComponents = [];
+      var wireframe;
+      var wireframeComponents = [];
+      var skullAnimation;
+      var rendered = false;
+      var allSet = false;
+      var locked = false;
+      var centered = false;
+
+      window.onkeyup = function(e) {
+        if (!allSet) {
+          return;
+        }
+        var key = e.keyCode ? e.keyCode : e.which;
+        if (key == 13 || key == 32) {
+          allSet = false
+          enterTheMatrix()
+          console.log(key);
+        }
+      }
+
+      function animateWarning() {
+        split = new SplitText(".alert", {
+          type: "words",
+          wordDelimiter: "*"
+        });
+        TweenMax.staggerFrom(split.words, 1, {
+          opacity: 0,
+          y: 50,
+          delay: 5,
+          ease: Back.easeIn.config(8),
+          onComplete: function() {
+            allSet = true
+            TweenMax.staggerTo(".blink",1,{
+              opacity:1,
+              ease:SteppedEase.config(1),
+              repeat:-1,
+              repeatDelay:0.1,
+            },0.5);
+          }
+        }, 0.1);
+      }
+
+      function enterTheMatrix() {
+        locked = true;
+        TweenMax.staggerTo(split.words, 1, {
+          opacity: 0,
+          delay: 0,
+          ease: Back.easeIn.config(8),
+          onComplete: function() {
+            TweenMax.to(".blink",1,{
+              opacity:0,
+              ease:Back.easeIn.config(8),
+              onComplete: function() {
+                enterTheSkull()
+              }
+            },0.5);
+          }
+        }, 0.05);
+      }
+
+      function enterTheSkull() {
+        skullAnimation.stop();
+        var current	= { y: camera.position.y, x: camera.position.x, lol: skull.position.y, z: camera.position.z };
+
+        var tweenCenter = new TWEEN.Tween(current).to({x: 0, y: 0}, 1000);
+        var tweenSkullTop = new TWEEN.Tween(current).to({lol: 300}, 1000);
+        var tweenZoom = new TWEEN.Tween(current).to({z: -2000}, 3000);
+
+        tweenCenter.onUpdate(function(){
+          camera.position.x = current.x;
+          camera.position.y = current.y;
+        });
+
+        tweenCenter.onComplete(function() {centered = true});
+
+        tweenSkullTop.onUpdate(function(){
+          skull.position.y = current.lol;
+          wireframe.position.y = current.lol;
+        });
+        //
+        tweenZoom.onUpdate(function(){
+          camera.position.z = current.z;
+        });
+
+        tweenZoom.onComplete(function() {
+          console.log('completed');
+          TweenMax.to("#container",2,{
+            opacity:0,
+            ease:Back.easeIn.config(8),
+          });
+        })
+
+        tweenCenter.easing(TWEEN.Easing.Quadratic.InOut)
+        tweenSkullTop.easing(TWEEN.Easing.Quadratic.InOut)
+        tweenZoom.easing(TWEEN.Easing.Quadratic.InOut)
+        tweenCenter.chain(tweenSkullTop);
+        tweenSkullTop.chain(tweenZoom)
+        tweenCenter.start();
+      }
+
+      animateWarning();
+			init();
+			animate();
+			function init() {
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+        var listener = new THREE.AudioListener();
+				camera.add( listener );
+				camera.position.z = 3000;
+        camera.position.x = 0;
+        camera.position.y = 0;
+        zoomIn()
+
+        function zoomIn() {
+          var current	= { z: camera.position.z, x: camera.position.x };
+
+          var tweenZoom = new TWEEN.Tween(current).to({z: 120, x: 60}, 6000)
+
+          tweenZoom.onUpdate(function(){
+            camera.position.z = current.z;
+            camera.position.x = current.x;
+          });
+
+          tweenZoom.easing(TWEEN.Easing.Quadratic.InOut)
+          tweenZoom.start();
+        }
+
+        // manager
+        var manager = new THREE.LoadingManager();
+				manager.onProgress = function ( item, loaded, total ) {
+					console.log( item, loaded, total );
+          if (loaded === total) {
+            rendered = true;
+          }
+				};
+
+				var onProgress = function ( xhr ) {
+					if ( xhr.lengthComputable ) {
+						var percentComplete = xhr.loaded / xhr.total * 100;
+            // $('#loader').css('width', Math.round(percentComplete, 2) + '%')
+            // $('#indicator').text(Math.round(percentComplete, 2) + '%')
+						console.log( Math.round(percentComplete, 2) + '% downloaded' );
+					}
+				};
+				var onError = function ( xhr ) {
+				};
+
+        // Skulls
+        var loaderSkull = new THREE.ObjectLoader(manager);
+
+        loaderSkull.load('obj/skull3.json', function(geometry) {
+          var material = new THREE.MeshBasicMaterial( {
+              color: 0x000000,
+          } );
+          geometry.rotateY(Math.PI)
+          geometry.rotateZ(Math.PI)
+          geometry.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
+              child.material = material;
+            }
+            skullComponents.push(child)
+          });
+          geometry.castShadow = true;
+          skull = geometry;
+          var audioLoader = new THREE.AudioLoader();
+          var gratata = new THREE.PositionalAudio( listener );
+          audioLoader.load( 'sounds/gratata.ogg', function( buffer ) {
+  					gratata.setBuffer( buffer );
+  					gratata.setRefDistance( 40 );
+            gratata.setLoop(true);
+            gratata.setPlaybackRate(0.9)
+  					gratata.play();
+  				});
+          skull.add( gratata );
+          scene.add( skull );
+          loadWireframe()
+        }, onProgress, onError)
+
+        var loader = new THREE.OBJLoader();
+
+        function positionX() {
+          var random = Math.floor(Math.random()*(300-(-300)+1)+(-300));
+          if (random >= 0) {
+            random = random + 40;
+          } else {
+            random = random - 40;
+          }
+
+          return random;
+        }
+
+        loader.load( "obj/uzi.obj", function( geometry ){
+          console.log('loaded', geometry);
+          var newGeo = geometry.children[0].geometry;
+          console.log(newGeo);
+          for (var i = 0; i < 50; i++) {
+            var uzi = new THREE.Mesh(newGeo, new THREE.MeshPhongMaterial({color: 0x00ff00}));
+            uzi.rotateY(Math.PI)
+
+            console.log(Math.floor(Math.random()*(200-(-200)+1)+(-200)));
+            uzi.position.x = positionX();
+            uzi.position.y = Math.floor(Math.random() * 200) + 1
+            uzi.position.z = (Math.random() - 0.5) * 1000;
+            uzis.push(uzi)
+            scene.add(uzi)
+          }
+
+        }, onProgress, onError);
+
+        function loadWireframe() {
+          loaderSkull.load('obj/skull3.json', function(geometry) {
+            var material = new THREE.MeshBasicMaterial({
+              color: 0x00FF00,
+              wireframe: true,
+            });
+
+            geometry.rotateY(Math.PI)
+            geometry.rotateZ(Math.PI)
+            geometry.traverse(function (child) {
+              if (child instanceof THREE.Mesh) {
+                console.log(child.name);
+                if (child.name.indexOf('dents') !== -1) {
+                  child.material =  new THREE.MeshBasicMaterial({
+                    color: 0x00FF00,
+                    wireframe: true
+                  });
+                } else {
+                  child.material = material;
+                }
+                child.castShadow = true;
+                child.scale.set( 0.26, 0.26, 0.26 );
+              }
+              wireframeComponents.push(child)
+            });
+            geometry.castShadow = true;
+            wireframe = geometry;
+            scene.add(geometry)
+            animateJaw()
+          })
+        }
+
+        function animateJaw() {
+          var userOpts	= {
+          	range		: skullComponents[1].position.y,
+          	duration	: 2500,
+          	delay		: 0,
+          	easing		: 'Elastic.EaseInOut'
+          };
+          var current	= { y: -userOpts.range };
+
+          skullAnimation = new TWEEN.Tween(current).to({y: +userOpts.range + 10}, 1000)
+          var tweenClose = new TWEEN.Tween(current).to({y: userOpts.range}, 1000)
+
+          skullAnimation.onUpdate(function(){
+            skullComponents[1].position.y = current.y;
+            skullComponents[3].position.y = current.y;
+            wireframeComponents[1].position.y = current.y;
+            wireframeComponents[3].position.y = current.y;
+          });
+
+          tweenClose.onUpdate(function(){
+            skullComponents[1].position.y = current.y;
+            skullComponents[3].position.y = current.y;
+            wireframeComponents[1].position.y = current.y;
+            wireframeComponents[3].position.y = current.y;
+          });
+
+          skullAnimation.easing(TWEEN.Easing.Elastic.InOut)
+          tweenClose.easing(TWEEN.Easing.Elastic.InOut)
+
+          skullAnimation.chain(tweenClose)
+          tweenClose.chain(skullAnimation)
+          skullAnimation.start();
+        }
+
+				// world
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2( 0x000000, 0.002 );
+
+        var texture = THREE.ImageUtils.loadTexture( 'textures/texture.jpg' );
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set( 60, 60 );
+
+        var planeGeo = new THREE.PlaneGeometry( Math.PI * window.innerWidth, Math.PI * window.innerHeight, 32 );
+        var planeMaterial = new THREE.MeshPhongMaterial({
+            // color: 0xf50066,
+            color: 0x00ff00,
+            map: texture,
+        });
+        // var planeMaterial = new THREE.MeshBasicMaterial({color: 0xf50066});
+        var plane = new THREE.Mesh( planeGeo, planeMaterial );
+        plane.rotateX(- Math.PI / 2);
+        plane.position.y = -50;
+        plane.castShadow = true;
+        scene.add( plane );
+
+
+				// lights
+				light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 0, 0, 100 );
+				scene.add( light );
+				light = new THREE.DirectionalLight( 0x002288 );
+				light.position.set( -1, -1, -1 );
+				scene.add( light );
+				light = new THREE.AmbientLight( 0x222222 );
+				scene.add( light );
+				// renderer
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setClearColor( scene.fog.color );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+        // composer = new THREE.EffectComposer( renderer );
+        // composer.addPass( new THREE.RenderPass( scene, camera ));
+        // var hblur = new THREE.ShaderPass( THREE.HorizontalBlurShader );
+        // composer.addPass( hblur );
+        //
+        // var vblur = new THREE.ShaderPass( THREE.VerticalBlurShader );
+        // // set this shader pass to render to screen so we can see the effects
+        // vblur.renderToScreen = true;
+        // composer.addPass( vblur );
+
+        composer = new THREE.EffectComposer( renderer );
+				composer.addPass( new THREE.RenderPass( scene, camera ) );
+				glitchPass = new THREE.GlitchPass();
+				glitchPass.renderToScreen = true;
+				composer.addPass( glitchPass );
+
+        // Sound
+
+				container = document.getElementById( 'container' );
+				container.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				render();
+			}
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				// controls.handleResize();
+				render();
+			}
+      function onDocumentMouseMove( event ) {
+				mouseX = ( event.clientX - windowHalfX ) /20;
+				mouseY = ( event.clientY - windowHalfY ) /20;
+			}
+			function animate() {
+				requestAnimationFrame( animate );
+        render();
+			}
+			function render() {
+        // var timer = Date.now() * 0.0001;
+        if (!locked) {
+          camera.position.x += ( -mouseX - camera.position.x + 60 ) * .05;
+				  camera.position.y += (  mouseY - camera.position.y ) * .05;
+          // camera.position.x += ( -mouseX - camera.position.x + 60 );
+  				// camera.position.y += ( mouseY - camera.position.y );
+        }
+        if (!centered) {
+          camera.lookAt(scene.position );
+        }
+
+        if (rendered) {
+          // wireframe.rotateY(Math.sin(timer) * 0.02000);
+          // skull.rotateY(Math.sin( timer ) * 0.02000);
+          for (var i = 0; i < uzis.length; i++) {
+            uzis[i].rotateY((Math.random() * 0.08));
+          }
+        }
+        TWEEN.update();
+				composer.render( scene, camera );
+			}
+		</script>
+
+	</body>
+</html>

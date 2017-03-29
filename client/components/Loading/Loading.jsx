@@ -25,7 +25,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-        {this.props.loading ? <div><span className="loading">initiliazing</span> <span className="loading__indicator">{this.state.loadValue}</span></div> : ''}
+        {this.props.loading ? <div style={{paddingTop: 15}}><span className="loading">initiliazing</span> <span className="loading__indicator">{this.state.loadValue}</span></div> : ''}
       </div>
     );
   }

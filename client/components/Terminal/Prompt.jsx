@@ -17,7 +17,11 @@ export default React.createClass({
 
 
   _handleChange(event) {
-    this.setState({value: event.target.value});
+    if (this.state.value.length === 0) {
+      this.setState({value: event.target.value.trim()});
+    } else {
+      this.setState({value: event.target.value});
+    }
   },
 
   _getLatestFromHistory(event) {
@@ -39,7 +43,7 @@ export default React.createClass({
   },
 
   _handleKeyPress(event) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && this.state.value.length > 0) {
       this.props.enter(event.target.value.trim())
       this.setState({
         value: '',

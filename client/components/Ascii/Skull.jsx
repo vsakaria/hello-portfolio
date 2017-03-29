@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class SkullASCII extends Component {
   constructor(props) {
     super(props);
@@ -29,8 +28,8 @@ class SkullASCII extends Component {
  \\ .´--.(##)(#).
   ´-->;--' pWq´>
    < <"v\\,,,,]
-    ´\\´^-''''7   welcome stranger.
-      ´~"--^-'   write somthn below
+    ´\\´^-''''7   hello stranger,
+      ´~"--^-'   welcome to my website.
       `;
 
     let mouthOpen = `
@@ -41,8 +40,8 @@ class SkullASCII extends Component {
  \\ .´--.(##)(#).
   ´-->;--' pWq´>
    < <"v\\,,,,]
-                 welcome stranger.
-    ´\\´^-''''7   write somthn below
+                 hello stranger,
+    ´\\´^-''''7   welcome to my website.
       ´~"--^-'   `;
 
 

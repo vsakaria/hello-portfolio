@@ -36,7 +36,11 @@ module.exports = {
       'node_modules',
       'client'
     ],
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
+    alias: {
+      TweenLite: 'gsap',
+      CSSPlugin: 'gsap/src/uncompressed/plugins/CSSPlugin'
+    },
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx',]
   },
 
   plugins: [
@@ -51,9 +55,9 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.scss$/, loader: 'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded'},
-      {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.css$|\.mp3$/, loader: "file"}
+      {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.css$|\.mp3$|\.obj$|\.json$|\.ogg$/, loader: "file"},
     ],
 
-    noParse: /\.min\.js/
+    // noParse: /\.min\.js/
   }
 };

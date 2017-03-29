@@ -9,7 +9,6 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
         <ul>
           {this.props.links.map(function(link, i) {
             return (
@@ -19,7 +18,6 @@ export default React.createClass({
             )
           })}
         </ul>
-      </div>
     );
   }
 });

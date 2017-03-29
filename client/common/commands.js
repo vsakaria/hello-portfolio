@@ -1,5 +1,6 @@
 import React from 'react';
 import Links from '../components/Types/Links';
+import Error from '../components/Types/Error';
 import List from '../components/Types/List';
 import Link from '../components/Types/Link';
 import Table from '../components/Types/Table';
@@ -13,23 +14,29 @@ const alt_cmds = ['pepe', 'slb'];
 const tableHeader = ['Project', 'Description', 'Date', 'Resources'];
 
 const tableBody = [{
-    title: 'Jeremy Venier',
-    description: 'Squaresplace implementation for this zen garden guy. Cool stuff.',
+    title: `Bike n' Connect`,
+    description: 'React Native, Redux, Codepush',
+    date: '2017',
+    link: 'http://bikenconnect.com'
+  },
+  {
+    title: `TTTism`,
+    description: 'React, Redux, Ansible',
     date: '2016',
-    link: 'http://jeremyvenier.fr'
+    link: 'http://tttism.com/'
+  },
+  {
+    title: 'Connect Lisboa',
+    description: 'Angular 2',
+    date: '2016',
+    link: 'http://connectlisboa.com'
   },
   {
     title: 'HOKO',
-    description: 'Developed and designed this SaaS venture, mobile deep linking stuff. Go check it -->',
-    date: '2015 - 2016',
+    description: 'Ruby on Rails',
+    date: '2015',
     link: 'http://hokolinks.com'
   },
-  {
-    title: 'Glintt',
-    description: 'Worked as a consultant for numerous clients in different areas, such as Bank, Insurance, Telecom, Transportations (among others)',
-    date: '2012 - 2015',
-    link: 'http://www.glintt.com'
-  }
 ];
 
 var Commands = function(value, callback, clear, showPepe) {
@@ -50,6 +57,8 @@ var Commands = function(value, callback, clear, showPepe) {
       callback(value, 'k');
       break;
 
+    case 'hi':
+    case 'Hi':
     case 'hello':
     case 'Hello':
     case 'hello world':
@@ -62,7 +71,8 @@ var Commands = function(value, callback, clear, showPepe) {
     case 'sex':
     case 'unicorn':
     case 'wtf':
-      callback(value, <List list={alt_cmds} title="🔑 You've unlocked the secret commands!! 🔑" />);
+    case 'xxx':
+      callback(value, <List list={alt_cmds} title="🔑 You've unlocked the secret commands 🔑" />);
       break;
 
     case 'clear':
@@ -108,12 +118,14 @@ var Commands = function(value, callback, clear, showPepe) {
 
     case 'work':
     case 'Work':
-      callback(value, <Table header={tableHeader} body={tableBody} />);
+      callback(value, <Table header={tableHeader} body={tableBody} description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />);
       break;
 
     case 'bio':
     case 'Bio':
-      callback(value, 'soon...')
+    case 'about':
+    case 'About':
+      callback(value, 'I used to be a drummer.')
       break;
 
     case '':
@@ -121,7 +133,7 @@ var Commands = function(value, callback, clear, showPepe) {
       break;
 
     default:
-      callback(value, '-oops "'+ value +'": command was not found. Try writing "help" or "commands"')
+      callback(value, <Error value={'-oops "'+ value +'": command was not found. Try writing "help" or "commands"'} />)
   }
 };
 
