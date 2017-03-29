@@ -101,7 +101,7 @@ export default React.createClass({
     }
 
     function enterTheSkull() {
-      skullAnimation.stop();
+      // skullAnimation.stop();
       var current	= { y: camera.position.y, x: camera.position.x, lol: skull.position.y, z: camera.position.z };
 
       var tweenCenter = new TWEEN.Tween(current).to({x: 0, y: 0}, 1000);
@@ -130,7 +130,7 @@ export default React.createClass({
           ease:Back.easeIn.config(8),
           onComplete: function() {
             ended = true;
-            sound.stop();
+            // sound.stop();
             self.props.router.push('welcome')
           }
         });
