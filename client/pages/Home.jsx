@@ -30,12 +30,10 @@ export default GSAP()(React.createClass({
   },
 
   componentWillLeave(callback) {
-    console.log('Home will leave');
     this.addAnimation(leaveAnimation, {callback, x: 1000, opacity: 1})
   },
 
   componentWillEnter(callback) {
-    console.log('WillEnter Props', this.props);
     if ((this.props.routes.length === 2 && this.props.routes[0].path === '/') && this.props.location.action !== 'POP') {
       this.setState({
         entered: true,
@@ -48,7 +46,6 @@ export default GSAP()(React.createClass({
           entered: true
         })
         this.addAnimation(moveAnimation, {callback, x: 0, opacity: 1})
-        console.log('home entered');
       }, 4000)
     }
   },

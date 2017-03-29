@@ -10,12 +10,10 @@ function moveAnimation(utils) {
 function leaveAnimation(utils) {
   const timeline = new TimelineMax({onComplete: utils.options.callback && utils.options.callback})
   timeline.to(utils.target, 4, {scale: 0, rotation: 1200, opacity: utils.options.opacity, ease:Power2.easeIn})
-  // .to('body', 1, {backgroundColor: '#000', onComplete: utils.options.callback && utils.options.callback})
   return timeline;
 }
 
 function enterAnimation(utils) {
-  console.log('passa');
   var tl = new TimelineMax();
   return tl.fromTo(utils.target, 4, {scale: 0, rotation: 1200, ease:Power2.easeOut}, {scale: 1, rotation: 0, ease:Power2.easeOut})
 }
@@ -29,12 +27,10 @@ export default GSAP()(React.createClass({
   },
 
   componentWillLeave(callback) {
-    console.log('Home will leave');
     this.addAnimation(leaveAnimation, {callback, x: 1000})
   },
 
   componentDidEnter() {
-    console.log('Home will enter');
     setTimeout(() => {
       this.setState({
         loading: false

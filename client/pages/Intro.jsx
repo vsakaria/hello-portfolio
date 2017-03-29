@@ -130,8 +130,15 @@ export default React.createClass({
           ease:Back.easeIn.config(8),
           onComplete: function() {
             ended = true;
-            // sound.stop();
-            self.props.router.push('welcome')
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.indexOf('safari') != -1) {
+              if (ua.indexOf('chrome') > -1) {
+                sound.stop();
+              }
+            } else {
+              sound.stop();
+            }
+            self.props.router.push('welcome');
           }
         });
       })

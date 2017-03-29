@@ -28,6 +28,11 @@ pre,
 code {
   font-family: $font-primary;
   font-size: 13px;
+
+  @media screen and (max-width: 400px) {
+    font-size: 11px;
+  }
+
 }
 
 
