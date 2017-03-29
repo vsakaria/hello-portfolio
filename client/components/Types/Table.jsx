@@ -24,7 +24,7 @@ export default GSAP()(React.createClass({
   render() {
     return (
       <div>
-        <Link to="/animation" className="lol"></Link>
+        <p className="lol"></p>
         <table className="type__table">
           <thead>
             <tr>
@@ -42,12 +42,22 @@ export default GSAP()(React.createClass({
                   <td className="type__table__cell">{item.title}</td>
                   <td className="type__table__cell">{item.description}</td>
                   <td className="type__table__cell">{item.date}</td>
-                  <td className="type__table__cell"><a href={item.link} target="_blank">{item.link}</a></td>
+                  <td className="type__table__cell">
+                    {item.links.map((item, index) => {
+                      return (
+                        <span>
+                          {index > 0 && '/ '}
+                          <a key={index} href={item.link} target="_blank">{item.value}</a>&nbsp;
+                        </span>
+                      )
+                    })}
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+        <p>I also do <Link to="/animation" style={{color: 'orange'}}>page transitions</Link></p>
       </div>
     );
   }

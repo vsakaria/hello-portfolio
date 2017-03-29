@@ -3,7 +3,6 @@ $background: #000;
 $color: lime;
 
 @import 'components/table';
-@import 'components/table';
 
 ::selection {
   background: $color;
@@ -43,6 +42,7 @@ code {
 .terminal__input {
   opacity: 0;
   width: 0px;
+  font-size: 12px;
 }
 
 input {
@@ -112,25 +112,30 @@ input {
 }
 
 #info {
-  color:#000;
+  color: #000;
   position: absolute;
-  top: 0px; width: 100%;
+  top: 0px;
+  width: 100%;
   padding: 5px;
 }
 
-#warning {
+.warning {
   position: fixed;
   bottom: 40px;
   box-sizing: border-box;
   width: 100%;
-  left: 50%;
-  margin-left: -250px;
+  margin: 0 auto;
+  left: 0;
   text-align: center;
   padding: 0 30px;
   font-size: 20px;
   color: #00ff00;
   z-index: 3;
+}
+
+.warning__inner {
   max-width: 500px;
+  margin: 0 auto;
 }
 
 .blink {
@@ -142,8 +147,22 @@ p {
   margin: 0;
 }
 
+a {
+  color: mediumblue;
+}
+
+
 .error {
   background-color: mediumblue;
+}
+
+.super-animated-text {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  font-size: 10px;
 }
 
 // Animations

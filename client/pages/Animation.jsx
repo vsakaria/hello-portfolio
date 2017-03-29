@@ -44,9 +44,9 @@ export default GSAP()(React.createClass({
   },
   render() {
     return (
-      <div style={{position: 'absolute', width: 200, heigh: 300, backgroundColor: 'white'}}>
+      <div className="super-animated-text">
         {!this.state.loading &&
-          <h1>Animation</h1>
+          <h1>hey, that's pretty good</h1>
         }
       </div>
     );

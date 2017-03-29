@@ -8,7 +8,7 @@ import Pepe from '../components/Ascii/Pepe';
 import Benfica from '../components/Ascii/Benfica';
 import CONST from './constants';
 
-const cmds = ['clear', 'social', 'bio', 'work', 'copyright', 'source', 'contact'];
+const cmds = ['clear', 'social', 'about', 'work', 'copyright', 'source', 'contact'];
 const alt_cmds = ['pepe', 'slb'];
 
 const tableHeader = ['Project', 'Description', 'Date', 'Resources'];
@@ -17,25 +17,41 @@ const tableBody = [{
     title: `Bike n' Connect`,
     description: 'React Native, Redux, Codepush',
     date: '2017',
-    link: 'http://bikenconnect.com'
+    links: [{
+      value: 'iOS',
+      link: 'https://itunes.apple.com/app/bike-n-connect/id1215027805?ls=1&mt=8'
+    },
+    {
+      value: 'Android',
+      link: 'https://play.google.com/store/apps/details?id=com.sportsnconnect.bikenconnect&hl=en'
+    }]
   },
   {
     title: `TTTism`,
     description: 'React, Redux, Ansible',
     date: '2016',
-    link: 'http://tttism.com/'
+    links: [{
+      value: 'Visit Site',
+      link: 'http://tttism.com/'
+    }]
   },
   {
     title: 'Connect Lisboa',
     description: 'Angular 2',
     date: '2016',
-    link: 'http://connectlisboa.com'
+    links: [{
+      value: 'Visit Site',
+      link: 'http://connectlisboa.com'
+    }]
   },
   {
     title: 'HOKO',
     description: 'Ruby on Rails',
     date: '2015',
-    link: 'http://hokolinks.com'
+    links: [{
+      value: 'Visit Site',
+      link: 'http://hokolinks.com'
+    }]
   },
 ];
 
@@ -66,7 +82,6 @@ var Commands = function(value, callback, clear, showPepe) {
       callback(value, 'Hello fellow human. Do you need any help?');
       break;
 
-    case 'faggot':
     case 'fuck':
     case 'sex':
     case 'unicorn':
@@ -92,7 +107,7 @@ var Commands = function(value, callback, clear, showPepe) {
 
     case 'source':
     case 'Source':
-      callback(value, <Link link="http://github.com/vascogaspar/hello-portfolio" before="You can find the source code of this website at"/>)
+      callback(value, <Link link="http://github.com/vascogaspar/hello-portfolio" before="Made with React, Three.js and Greensock in Lisbon. You can find the source code of this website at"/>)
       break;
 
     case 'pepe':
@@ -118,7 +133,7 @@ var Commands = function(value, callback, clear, showPepe) {
 
     case 'work':
     case 'Work':
-      callback(value, <Table header={tableHeader} body={tableBody} description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />);
+      callback(value, <Table header={tableHeader} body={tableBody} description="Some of my latest projects include:" />);
       break;
 
     case 'bio':

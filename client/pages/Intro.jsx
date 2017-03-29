@@ -405,12 +405,14 @@ export default React.createClass({
       <div>
         <div ref="intro" id="container">
         </div>
-        <div id="warning">
-          <p className="alert">
-            You are now entering a dangerous zone.
-            Do you wish to continue
-          </p>
-          <span className="blink">?</span>
+        <div id="warning" className="warning">
+          <div className="warning__inner">
+            <p className="alert">
+              You are now entering a dangerous zone.
+              Do you wish to continue
+            </p>
+            <span className="blink">?</span>
+          </div>
         </div>
       </div>
     );
