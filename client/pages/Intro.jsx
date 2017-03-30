@@ -3,14 +3,15 @@ var skullObj = require('vendor/models/skull3.json');
 var uziObj = require('vendor/models/uzi.obj');
 var groundTexture = require('vendor/textures/texture.jpg');
 var gratataSound = require('vendor/sounds/gratata.ogg');
-require("vendor/js/SplitText.min.js")
-require("vendor/js/OBJLoader.js")
-require("vendor/js/EffectComposer.js")
-require("vendor/js/RenderPass.js")
-require("vendor/js/ShaderPass.js")
-require("vendor/js/GlitchPass.js")
-require("vendor/js/CopyShader.js")
-require("vendor/js/DigitalGlitch.js")
+require("vendor/js/SplitText.min.js");
+require("vendor/js/OBJLoader.js");
+require("vendor/js/EffectComposer.js");
+require("vendor/js/RenderPass.js");
+require("vendor/js/ShaderPass.js");
+require("vendor/js/GlitchPass.js");
+require("vendor/js/CopyShader.js");
+require("vendor/js/DigitalGlitch.js");
+var Detector = require("vendor/js/Detector.js");
 
 // React suff
 import React, { Component } from 'react';
@@ -18,6 +19,7 @@ import React, { Component } from 'react';
 export default React.createClass({
 
   componentDidMount() {
+    if (!Detector.webgl) Detector.addGetWebGLMessage();
     const self = this;
     var container;
     var uzis = [];
