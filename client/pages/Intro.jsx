@@ -38,6 +38,10 @@ export default React.createClass({
     var centered = false;
     var ended = false;
 
+    function isSafari() {
+      return navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+    }
+
     window.onkeyup = function(e) {
       if (!allSet) {
         return;
@@ -130,12 +134,7 @@ export default React.createClass({
           ease:Back.easeIn.config(8),
           onComplete: function() {
             ended = true;
-            var ua = navigator.userAgent.toLowerCase();
-            if (ua.indexOf('safari') != -1) {
-              if (ua.indexOf('chrome') > -1) {
-                sound.stop();
-              }
-            } else {
+            if (!isSafari()) {
               sound.stop();
             }
             self.props.router.push('welcome');
@@ -211,16 +210,19 @@ export default React.createClass({
         });
         geometry.castShadow = true;
         skull = geometry;
-        var audioLoader = new THREE.AudioLoader();
-        sound = new THREE.PositionalAudio( listener );
-        audioLoader.load(gratataSound, function( buffer ) {
-          sound.setBuffer( buffer );
-          sound.setRefDistance( 100 );
-          sound.setLoop(true);
-          sound.setPlaybackRate(0.9)
-          sound.play();
-        });
-        skull.add( sound );
+        if (!isSafari()) {
+          var audioLoader = new THREE.AudioLoader();
+          sound = new THREE.PositionalAudio( listener );
+          audioLoader.load(gratataSound, function( buffer ) {
+            sound.setBuffer( buffer );
+            sound.setRefDistance( 100 );
+            sound.setLoop(true);
+            sound.setPlaybackRate(0.9)
+            sound.play();
+          });
+          skull.add( sound );
+        }
+
         scene.add( skull );
         loadWireframe()
       }, onProgress, onError)
