@@ -3,15 +3,27 @@ import Links from '../components/Types/Links';
 import Error from '../components/Types/Error';
 import List from '../components/Types/List';
 import Link from '../components/Types/Link';
+import Awards from '../components/Types/Awards';
 import Table from '../components/Types/Table';
 import Pepe from '../components/Ascii/Pepe';
 import Benfica from '../components/Ascii/Benfica';
 import CONST from './constants';
 
-const cmds = ['clear', 'social', 'about', 'work', 'copyright', 'source', 'contact'];
+const cmds = ['clear', 'social', 'about', 'work', 'awards', 'copyright', 'source', 'contact'];
 const alt_cmds = ['pepe', 'slb'];
 
 const tableHeader = ['Project', 'Description', 'Date', 'Resources'];
+
+const awards = [{
+    site: 'https://vasco.work',
+    description: 'Featured on Form magazine issue #269',
+    link: 'http://form.de/en/magazine/form269/filter'
+  },
+  {
+    site: 'http://connectlisboa.com',
+    description: 'Inspirational Website of the Week #231',
+    link: 'https://tympanus.net/codrops/collective/collective-231/'
+  }]
 
 const tableBody = [{
     title: `Bike n' Connect`,
@@ -95,9 +107,9 @@ var Commands = function(value, callback, clear, showPepe) {
       clear();
       break;
 
-    case 'pwq':
-    case 'pWq':
-      callback(value, 'thats a nose');
+    case 'awards':
+    case 'Awards':
+      callback(value, <Awards awards={awards}/>);
       break;
 
     case 'slb':
