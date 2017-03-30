@@ -18,8 +18,21 @@ import React, { Component } from 'react';
 
 export default React.createClass({
 
+  getInitialState() {
+    return {
+      hasSupport: true,
+      countDown: 5
+    }
+  },
+
   componentDidMount() {
-    if (!Detector.webgl) Detector.addGetWebGLMessage();
+    if (!Detector.webgl){
+      this.setState({
+        hasSupport: false
+      });
+      this.countDown();
+      return;
+    }
     const self = this;
     var container;
     var uzis = [];
@@ -411,20 +424,44 @@ export default React.createClass({
     }
   },
 
+  countDown() {
+    var counter = 5;
+    var self = this;
+    var interval = setInterval(function() {
+      counter--;
+      if (counter == 0) {
+        clearInterval(interval);
+        self.props.router.push('welcome');
+      }
+      self.setState({
+        countDown: counter
+      })
+    }, 1000);
+  },
+
   render() {
     return (
       <div>
-        <div ref="intro" id="container">
-        </div>
-        <div id="warning" className="warning">
-          <div className="warning__inner">
-            <p className="alert">
-              You are now entering a dangerous zone.
-              Do you wish to continue
-            </p>
-            <span className="blink">?</span>
+        {this.state.hasSupport ?
+          <div>
+            <div ref="intro" id="container">
+            </div>
+            <div id="warning" className="warning">
+              <div className="warning__inner">
+                <p className="alert">
+                  You are now entering a dangerous zone.
+                  Do you wish to continue
+                </p>
+                <span className="blink">?</span>
+              </div>
+            </div>
           </div>
-        </div>
+          :
+          <div className="graphics-warning">
+            <p>Your graphics card does not support this super nice intro. You're about to be redirected in <strong>{this.state.countDown}</strong> to the main page.</p>
+          </div>
+        }
+
       </div>
     );
   }

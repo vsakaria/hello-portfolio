@@ -171,6 +171,23 @@ a {
   font-size: 8px;
 }
 
+.graphics-warning {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  left: 0;
+  padding: 0 30px;
+  text-align: center;
+  width: 100%;
+
+  p {
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 // Animations
 
 .a-blink {
