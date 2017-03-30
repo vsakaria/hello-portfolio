@@ -152,7 +152,7 @@ var Commands = function(value, callback, clear, showPepe) {
     case 'Bio':
     case 'about':
     case 'About':
-      callback(value, 'I used to be a drummer.')
+      callback(value, 'I do web and mobile stuff. Worked for clients such as: Mercedes-Benz, EMSA, Accor Hotels, Speedo, Faber Ventures, Sang Bleu, Comboios de Portugal & NOS. Also used to be a drummer.')
       break;
 
     case '':
