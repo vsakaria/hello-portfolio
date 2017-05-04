@@ -367,7 +367,7 @@ export default React.createClass({
       light = new THREE.AmbientLight( 0x222222 );
       scene.add( light );
       // renderer
-      renderer = new THREE.WebGLRenderer( { antialias: true } );
+      renderer = new THREE.WebGLRenderer( { antialias: false } );
       renderer.setClearColor( scene.fog.color );
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( window.innerWidth, window.innerHeight );
