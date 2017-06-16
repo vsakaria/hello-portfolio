@@ -458,7 +458,7 @@ export default React.createClass({
                 </p>
                 <span className="blink">?</span>
                 {(isMobile() && this.state.showEnter) &&
-                  <Link className="enter-the-matrix" to="welcome">Enter</Link>
+                  <p style={{display: 'block'}}><Link className="enter-the-matrix" to="welcome">Enter</Link></p>
                 }
               </div>
             </div>
