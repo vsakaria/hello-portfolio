@@ -26,6 +26,19 @@ const awards = [{
   }]
 
 const tableBody = [{
+    title: `Out to Lunch`,
+    description: 'Prestashop',
+    date: '2017'
+  },{
+    title: `Apelido & Apelido`,
+    description: 'React',
+    date: '2017',
+    links: [{
+      value: 'Visit Site',
+      link: 'https://apelido-apelido.com'
+    }]
+  },
+  {
     title: `Bike n' Connect`,
     description: 'React Native, Redux, Codepush',
     date: '2017',
