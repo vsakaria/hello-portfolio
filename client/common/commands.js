@@ -80,6 +80,72 @@ const tableBody = [{
   },
 ];
 
+const experiments = [{
+    title: `infinite_void`,
+    description: 'React.js, GSAP',
+    date: '18/06/2017',
+    links: [{
+      value: 'Visit experiment',
+      link: 'https://labs.vasco.work/infinite-void/'
+    }]
+  },
+  {
+    title: `delete_yourself`,
+    description: 'React.js, GSAP',
+    date: '20/06/2017',
+    links: [{
+      value: 'Visit experiment',
+      link: 'https://labs.vasco.work/delete-yourself/'
+    }]
+  },
+  {
+    title: `eternal`,
+    description: 'jQuery',
+    date: '21/06/2017',
+    links: [{
+      value: 'Visit experiment',
+      link: 'https://labs.vasco.work/pain/'
+    }]
+  },
+  {
+    title: `neon_genesis`,
+    description: 'React.js, GSAP',
+    date: '22/06/2017',
+    links: [{
+      value: 'Visit experiment',
+      link: 'https://labs.vasco.work/neon-genesis/'
+    }]
+  },
+  {
+    title: `isometric_contraption`,
+    description: 'Skrollr',
+    date: '24/06/2017',
+    links: [{
+      value: 'Visit experiment',
+      link: 'https://labs.vasco.work/isometric-contraption/'
+    }]
+  },
+  {
+    title: `canvas #1`,
+    description: 'Vanilla Javascript',
+    date: '24/06/2017',
+    links: [{
+      value: 'Visit experiment',
+      link: 'https://labs.vasco.work/canvas-one/'
+    }]
+  },
+  {
+    title: `canvas #2`,
+    description: 'Vanilla Javascript',
+    date: '18/07/2017',
+    links: [{
+      value: 'Visit experiment',
+      link: 'https://labs.vasco.work/canvas-two/'
+    }]
+  }
+
+];
+
 var Commands = function(value, callback, clear, showPepe) {
   switch (value) {
     case 'help':
@@ -158,7 +224,7 @@ var Commands = function(value, callback, clear, showPepe) {
 
     case 'work':
     case 'Work':
-      callback(value, <Table header={tableHeader} body={tableBody} description="Some of my latest projects include:" />);
+      callback(value, <Table header={tableHeader} experiments={experiments} body={tableBody} description="Some of my latest projects include:" />);
       break;
 
     case 'bio':
