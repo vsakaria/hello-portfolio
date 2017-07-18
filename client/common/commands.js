@@ -15,13 +15,23 @@ const alt_cmds = ['pepe', 'slb'];
 const tableHeader = ['Project', 'Description', 'Date', 'Resources'];
 
 const awards = [{
+    site: 'https://apelido-apelido.work',
+    description: 'French Design Index - Site of the Day',
+    link: 'http://www.frenchdesignindex.com/design-index-13359'
+  },
+  {
     site: 'https://vasco.work',
     description: 'Featured on Form magazine issue #269',
     link: 'http://form.de/en/magazine/form269/filter'
   },
   {
     site: 'http://connectlisboa.com',
-    description: 'Inspirational Website of the Week #231',
+    description: 'French Design Index - Site of the Day',
+    link: 'http://www.frenchdesignindex.com/design-index-11989'
+  },
+  {
+    site: 'http://connectlisboa.com',
+    description: 'Codrops - Inspirational Website of the Week #231',
     link: 'https://tympanus.net/codrops/collective/collective-231/'
   }]
 

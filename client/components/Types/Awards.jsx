@@ -12,7 +12,7 @@ export default React.createClass({
       <ul className="awards__list">
         {this.props.awards.map((award, index) => {
           return (
-            <li>{award.site} - {award.description} (<a href={award.link} target="_blank">Open link</a>)</li>
+            <li>{award.site}: {award.description} (<a href={award.link} target="_blank">Open link</a>)</li>
           )
         })}
       </ul>
